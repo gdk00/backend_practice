@@ -22,3 +22,9 @@ poetry install
 ```sh
 poetry run python ./src/run.py
 ```
+
+Автоматическая сортиовка 
+
+```sh
+poetry run isort .
+```
