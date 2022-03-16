@@ -23,7 +23,7 @@ poetry install
 poetry run python ./src/run.py
 ```
 
-Автоматическая сортиовка 
+Автоматическая сортиовка импортов в файлах (косметика)
 
 ```sh
 poetry run isort .
