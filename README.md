@@ -31,7 +31,25 @@ poetry run isort .
 
 ---
 
+## Postman
+
+Для отладки приложения можно использовать тулзу `Postman` ([скачать](https://www.postman.com/downloads/)).
+После этого можно в программе можно импортировать готовую коллекцию запросов из этого репозитория: `BackendPractice.postman_collection.json`.
+
+---
+
 ## Задание
 
 После успешной установки и запуска проекта похлопайте себя по плечу.
 Далее давайте сделаем ...
+
+---
+
+## Ресурсы
+
+1. [FastApi](https://fastapi.tiangolo.com)
+1. [SQLAlchemy](https://docs.sqlalchemy.org)
+1. [Poetry](https://python-poetry.org)
+1. [Postman](https://learning.postman.com)
+1. [Pydantic](https://pydantic-docs.helpmanual.io)
+1. [Swagger](https://swagger.io)
