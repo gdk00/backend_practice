@@ -34,7 +34,7 @@ poetry run isort .
 ## Postman
 
 Для отладки приложения можно использовать тулзу `Postman` ([скачать](https://www.postman.com/downloads/)).
-После этого можно в программе можно импортировать готовую коллекцию запросов из этого репозитория: `BackendPractice.postman_collection.json`.
+После этого в программе можно импортировать готовую коллекцию запросов из этого репозитория: `BackendPractice.postman_collection.json`.
 
 ---
 
