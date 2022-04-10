@@ -15,6 +15,9 @@ class Person(Base):
     organization = relationship("Organization", back_populates="employees")
     organization_id = Column(Integer, ForeignKey("organization.id"), nullable=True)
 
+    def __repr__(self) -> str:
+        return f"User: {self.email}"
+
 
 class Organization(Base):
     __tablename__ = "organization"

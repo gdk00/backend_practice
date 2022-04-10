@@ -15,6 +15,7 @@ isort = "^5.10.1"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 PyJWT = "1.7.1"
 python-decouple = "3.3"
+factory-boy = "^3.2.1"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^22.1.0", allow-prereleases = true}

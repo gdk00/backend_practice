@@ -1,6 +1,6 @@
 from typing import Optional
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 
 from auth_handler import signJWT
@@ -37,6 +37,12 @@ def get_organization(org_id: int, db: Session = Depends(get_db)):
     return org
 
 
-@app.get('/token')
-def get_token():
+@app.post("/token")
+def get_token(user: schemas.PersonCreate, db: Session = Depends(get_db)):
+    person: models.Person = crud.get_person_by_email(db, user.email)
+    if person is None or person.hashed_password != user.password:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+        )
     return signJWT()

@@ -3,8 +3,12 @@ from sqlalchemy.orm import Session
 from . import models, schemas
 
 
-def get_person(db: Session, person_id: int):
+def get_person(db: Session, person_id: int) -> models.Person:
     return db.query(models.Person).filter(models.Person.id == person_id).first()
+
+
+def get_person_by_email(db: Session, email: str) -> models.Person:
+    return db.query(models.Person).filter(models.Person.email == email).first()
 
 
 def get_organization(db: Session, organization_id: int):
