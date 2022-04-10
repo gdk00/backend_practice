@@ -3,11 +3,13 @@ from typing import Optional
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
+from auth_handler import signJWT
 from sql_app import database, models, crud, schemas
 
 models.Base.metadata.create_all(bind=database.engine)
 
 app = FastAPI()
+
 
 # Dependency
 def get_db():
@@ -33,3 +35,8 @@ def get_person(person_id: int, db: Session = Depends(get_db)):
 def get_organization(org_id: int, db: Session = Depends(get_db)):
     org = crud.get_organization(db, organization_id=org_id)
     return org
+
+
+@app.get('/token')
+def get_token():
+    return signJWT()
