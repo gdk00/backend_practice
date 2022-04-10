@@ -3,6 +3,10 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
+class JwtSchema(BaseModel):
+    jwt: str
+
+
 class PersonBase(BaseModel):
     email: str
 

@@ -3,7 +3,7 @@ from typing import Optional
 from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 
-from auth_handler import signJWT
+from auth_handler import decodeJWT, signJWT
 from sql_app import database, models, crud, schemas
 
 models.Base.metadata.create_all(bind=database.engine)
@@ -37,6 +37,17 @@ def get_organization(org_id: int, db: Session = Depends(get_db)):
     return org
 
 
+@app.post("/secret")
+def get_secret(jwt_schema: schemas.JwtSchema, db: Session = Depends(get_db)):
+    params = decodeJWT(jwt_schema.jwt)
+    user = crud.get_person(db, params["user_id"])
+    if user.email != "dima@kornev.ru":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Unauthorized"
+        )
+    return {"secret": "Super super secret"}
+
+
 @app.post("/token")
 def get_token(user: schemas.PersonCreate, db: Session = Depends(get_db)):
     person: models.Person = crud.get_person_by_email(db, user.email)
@@ -45,4 +56,4 @@ def get_token(user: schemas.PersonCreate, db: Session = Depends(get_db)):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect email or password",
         )
-    return signJWT()
+    return signJWT(person.id)

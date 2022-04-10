@@ -1,11 +1,69 @@
 {
 	"info": {
-		"_postman_id": "06725111-e799-4b59-8279-3300db78c851",
+		"_postman_id": "b7024d47-43f3-4250-bdde-deaf7dd4b1ba",
 		"name": "BackendPractice",
 		"description": "Докементация запросов к проекту Backend Practive, посвящённому тренировке работы со стандартными технологиями разработки бекенда.\n\nС ❤️ от gdk00 и ierehon1905.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Ручка отдает пользователя по ID"
+			},
+			"response": [
+				{
+					"name": "Ping",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 10 Apr 2022 15:34:28 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "17"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Hello\": \"World\"\n}"
+				}
+			]
+		},
 		{
 			"name": "Get Person",
 			"request": {
@@ -23,10 +81,51 @@
 				},
 				"description": "Ручка отдает пользователя по ID"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Dima",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/person/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"person",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 10 Apr 2022 15:34:09 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "56"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"email\": \"dima@kornev.ru\",\n    \"id\": 2,\n    \"organization_id\": null\n}"
+				}
+			]
 		},
 		{
-			"name": "Get Organization",
+			"name": "Get Organisation",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -42,7 +141,261 @@
 				},
 				"description": "Ручка отдает организацию по ID"
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Yandex",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/org/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"org",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 10 Apr 2022 15:34:39 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "92"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"title\": \"Yandex\",\n    \"id\": 1,\n    \"employees\": [\n        {\n            \"email\": \"leon@leon.com\",\n            \"id\": 1,\n            \"organization_id\": 1\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get JWT Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.collectionVariables.set(\"access_token\", jsonData.access_token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"dima@kornev.ru\",\n    \"password\": \"qwerty\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/token",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"token"
+					]
+				},
+				"description": "Ручка отдает организацию по ID"
+			},
+			"response": [
+				{
+					"name": "Leon",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"leon@leon.com\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 10 Apr 2022 15:33:05 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "156"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmVzIjoxNjQ5NjA1Mzg1Ljk0NzE3MzgsInVzZXJfaWQiOjF9.HVam3xTBrMyT7AL-0mwVpGh0J95uD3fApnVgieN5NRs\"\n}"
+				},
+				{
+					"name": "Dima",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"dima@kornev.ru\",\n    \"password\": \"qwerty\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 10 Apr 2022 15:33:53 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "155"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmVzIjoxNjQ5NjA1NDM0LjE1NDkxNSwidXNlcl9pZCI6Mn0.GkAG9wXll48W2UJ-IQ1iNP7SNJsI7-I3SyJ4hdRccWY\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Secret",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"jwt\": \"{{access_token}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/secret",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"secret"
+					]
+				},
+				"description": "Ручка отдает организацию по ID"
+			},
+			"response": [
+				{
+					"name": "Super Secret",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jwt\": \"{{access_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/secret",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"secret"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "date",
+							"value": "Sun, 10 Apr 2022 15:42:49 GMT"
+						},
+						{
+							"key": "server",
+							"value": "uvicorn"
+						},
+						{
+							"key": "content-length",
+							"value": "31"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"secret\": \"Super super secret\"\n}"
+				}
+			]
 		}
 	],
 	"event": [
@@ -68,7 +421,12 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "http://127.0.0.1:5000",
+			"value": "localhost:5000",
+			"type": "default"
+		},
+		{
+			"key": "access_token",
+			"value": "",
 			"type": "default"
 		}
 	]
