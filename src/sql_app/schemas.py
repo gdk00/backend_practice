@@ -18,7 +18,6 @@ class PersonCreate(PersonBase):
 class Person(PersonBase):
     id: int
     organization_id: Optional[int] = None
-    university_id: Optional[int] = None
 
     class Config:
         orm_mode = True
@@ -38,24 +37,3 @@ class Organization(OrganizationBase):
 
     class Config:
         orm_mode = True
-
-
-class UniversityBase(BaseModel):
-    title: str
-
-
-class UniversityCreate(UniversityBase):
-    pass
-
-
-class University(UniversityBase):
-    id: int
-    students: List[Person] = []
-
-    class Config:
-        orm_mode = True
-
-
-class UniversityAddStudent(BaseModel):
-    person_id: int
-    university_id: int

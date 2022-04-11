@@ -71,32 +71,3 @@ def create_person(person: schemas.PersonCreate, db: Session = Depends(get_db)):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Person with email {person.email} already exists",
         )
-
-
-# post add students to university
-@app.post("/university/student")
-def add_student_to_university(
-    data: schemas.UniversityAddStudent, db: Session = Depends(get_db)
-):
-    return crud.add_student_to_university(db, data.university_id, data.person_id)
-
-
-# add university
-@app.post("/university", response_model=schemas.University)
-def create_university(
-    university: schemas.University,
-    db: Session = Depends(get_db),
-):
-    try:
-        return crud.create_university(db, university)
-    except exc.IntegrityError:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"University with name {university.title} already exists",
-        )
-
-
-# get university by id
-@app.get("/university/{university_id}", response_model=schemas.University)
-def get_university(university_id: int, db: Session = Depends(get_db)):
-    return crud.get_university(db, university_id)
