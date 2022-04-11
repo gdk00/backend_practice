@@ -34,7 +34,7 @@ def get_person(person_id: int, db: Session = Depends(get_db)):
     return person
 
 
-@app.get("/org/{org_id}", response_model=schemas.Organization)
+@app.get("/organization/{org_id}", response_model=schemas.Organization)
 def get_organization(org_id: int, db: Session = Depends(get_db)):
     org = crud.get_organization(db, organization_id=org_id)
     return org
@@ -62,7 +62,7 @@ def get_token(user: schemas.PersonCreate, db: Session = Depends(get_db)):
     return signJWT(person.id)
 
 
-@app.post("/person")
+@app.post("/person", response_model=schemas.Person)
 def create_person(person: schemas.PersonCreate, db: Session = Depends(get_db)):
     try:
         return crud.create_person(db, person)
